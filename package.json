@@ -1,0 +1,51 @@
+{
+  "scripts": {
+    "release": "semantic-release --debug true",
+    "release-ci": "semantic-release",
+    "release-pre": "semantic-release -d",
+    "build": "ts-node ci/compile.ts",
+    "build-fivem": "ts-node ci/compile.ts 0 ../fivem-webbed"
+  },
+  "devDependencies": {
+    "semantic-release": "17.0.8",
+    "@semantic-release/release-notes-generator": "^9.0.1",
+    "@semantic-release/exec": "^5.0.0",
+    "commitlint": "8.3.5",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "husky": "^4.2.5",
+    "glob": "^7.1.6",
+    "@types/glob": "^7.1.3",
+    "typescript": "^4.1.3",
+    "ts-node": "^9.1.1"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/github",
+        {
+          "assets": [
+            {
+              "path": "./release.zip",
+              "label": "Resource"
+            }
+          ]
+        }
+      ],
+      [
+        "@semantic-release/exec",
+        {
+          "generateNotesCmd": "npm run --silent build ${nextRelease.version} && mv dist fivem-webbed && zip -qq -r release.zip ./fivem-webbed"
+        }
+      ]
+    ],
+    "tagFormat": "${version}"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}
