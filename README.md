@@ -27,9 +27,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This is a library for interacting with the Discord API in an object-oriented fashion. It is very fresh and still lacking
-some features, but has proven useful for my personal cases. For the time being, most things are read-only, however this
-will change.
+This is a library for creating RESTful web endpoints in FiveM server.
 
 <!-- ![product-screenshot](https://i.gyazo.com/268f17b6814049b8855ca3b9f384a68c.png) -->
 
