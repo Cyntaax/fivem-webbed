@@ -32,7 +32,7 @@ function Server.listen()
         end
         for k,v in pairs(Server.Routes) do
             for b,z in pairs(v.Paths) do
-                local data = exports.fxl:matchRoute(z._path, path)
+                local data = exports["fivem-webbed"]:matchRoute(z._path, path)
                 if data then
                     if type(data) == "table" then
                         print(json.encode(data))
