@@ -44,7 +44,7 @@ function Server.listen()
                         local request = Request.new(req)
                         if z.pathData then
                             for u,x in pairs(data) do
-                                request:SetParam(u, Util:DecodeURI(x))
+                                request:SetParam(u, decodeURI(x))
                             end
                         end
 
