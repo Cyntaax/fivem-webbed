@@ -141,3 +141,34 @@ function PromiseAsync:Series(tasks)
     end)
     return p
 end
+
+function PatternToRoute(input)
+    if input == "/" then input = "" end
+    local routeData = {
+        _route = input,
+        route = input,
+        _path = input,
+        path = input,
+        params = {}
+    }
+    local matcher = input
+    for k,v in input:gmatch "/(:%w+)" do
+        local rawname = k:gsub(":", "")
+        table.insert(routeData.params, {
+            name = rawname
+        })
+        matcher, _ = matcher:gsub(k, "(%%w+)", 1)
+    end
+    routeData._route = matcher
+    routeData.route = matcher
+    return routeData
+end
+
+
+local function decodeCharacter(code)
+    return string.char(tonumber(code, 16))
+end
+function decodeURI(s)
+    local str = s:gsub("+", " "):gsub('%%(%x%x)', decodeCharacter)
+    return str 
+end
