@@ -25,7 +25,8 @@ function Router:Get(path, handler)
         path = parsed.route,
         handler = handler,
         pathData = parsed,
-        _path = parsed._route,
+        _path = parsed._path,
+        _route = parsed._route,
     })
 end
 
@@ -38,7 +39,8 @@ function Router:Post(path, handler)
         path = parsed.route,
         handler = handler,
         pathData = parsed,
-        _path = parsed._route,
+        _path = parsed._path,
+        _route = parsed._route,
     })
 end
 
