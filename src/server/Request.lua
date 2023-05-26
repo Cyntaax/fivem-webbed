@@ -27,7 +27,7 @@ function Request.new(request, session)
     end
 
     if request.headers.Cookie then
-        local cookies = exports.fxl:parseCookie(request.headers.Cookie)
+        local cookies = exports["fivem-webbed"]:parseCookie(request.headers.Cookie)
         _Request._Cookies = cookies
     end
 
